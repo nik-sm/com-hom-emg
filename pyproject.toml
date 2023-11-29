@@ -1,0 +1,7 @@
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+select = ["E", "F", "I001"]
+unfixable = ["F841"]  # local variable '...' is assigned to but never used

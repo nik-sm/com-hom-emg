@@ -1,0 +1,31 @@
+# dependencies
+einops
+jupyterlab
+kaleido
+loguru
+matplotlib
+numpy
+plotly
+pytorch_lightning==1.8.6
+rich
+scikit-learn
+tensorboard
+thu_rsvp_dataset
+torch==1.13.1
+torch-tb-profiler
+torchmetrics
+torchvision
+vit-pytorch
+
+# project utilities
+black
+black[jupyter]
+colorama
+ipython
+isort
+pre-commit
+pytest
+pytest-cov
+pytype
+ruff
+vulture
