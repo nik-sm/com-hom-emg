@@ -6,12 +6,9 @@ Setup project with `make` and activate virtual environment with `source venv/bin
 
 ### Download dataset
 
-Download and uncompress the dataset from Google Drive:
+Download and uncompress the dataset from Zenodo:
 ```shell
-pip install gdown
-mkdir data; cd data/
-gdown "https://drive.google.com/uc?id=1-MXZF9YAzs3smi3fm4d8uJtNOZ4Ty3Ne&export=download"
-xz --decompress self-contained-data.combination-gestures.pkl.xz
+bash scripts/fetch_dataset.sh
 ```
 
 # Usage
@@ -24,7 +21,7 @@ The experiment workflow is divided into 3 stages:
 ### 1. Run training
 
 Each experiment involves training models with varying hyperparameters, data splits, and random seeds.
-Models are trained on data from a subset of subjects, and then the saved model can be used for feature extraction on
+Models are trained on data from a subset of subjects, and then the saved model can be used for feature extraction on 
 unseen test subjects.
 
 In the paper, we only discuss evaluation on unseen subjects using fresh small classifiers in scikit-learn.
@@ -92,14 +89,17 @@ python scripts/emit_latex.py
 
 # Dataset details
 
+For information on the dataset contents, see the paper or the description at Zenodo: https://zenodo.org/records/10291625.
+
 Data used in this project was recorded and preprocessed using the GEST project.
 
 The dataset consists of 10 subjects, whose data were collected in the "Sprint7" experimental paradigm of the GEST project.
 
 To produce the self-contained data file used here:
-1. Checkout this branch of GEST repo: https://github.com/neu-spiral/GEST/tree/combination-homomorphic-encoder-dataset
+1. Checkout this branch of GEST repo: https://github.com/neu-spiral/GEST/tree/combination-homomorphic-encoder-dataset, and see the README at `reporting/`
+
 2. Extract data from each subject's experiment folder using: `python reporting/sprint7/1_preprocess.py`
-3. Export data into the self-contained pickle using the notebook: `reporting/sprint7/export_data.ipynb`
+3. Export data: `python reporting/public-dataset-release/prepare-data.py`
 
 # PDF
 
@@ -107,26 +107,50 @@ To read our paper, see: https://arxiv.org/pdf/2311.14675.pdf
 
 # Citation
 
-If you use this code, please cite our paper:
+If you use this code or dataset, please use one of the citations below.
 
+Article Citation:
 ```bibtex
 @article{smedemarkmargulies2023fast,
-      title={Fast and Expressive Gesture Recognition using a Combination-Homomorphic Electromyogram Encoder},
-      author={
-        Niklas Smedemark-Margulies and
-        Yunus Bicer and
-        Elifnur Sunger and
-        Tales Imbiriba and
-        Eugene Tunik and
-        Deniz Erdogmus and
-        Mathew Yarossi and
-        Robin Walters
-      },
-      year={2023},
-      month={10},
-      day={30},
-      journal={arXiv preprint arXiv:2311.14675},
-      url={https://arxiv.org/abs/2311.14675},
+  title={{Fast and Expressive Gesture Recognition using a Combination-Homomorphic Electromyogram Encoder}}, 
+  author={
+    Niklas Smedemark-Margulies and 
+    Yunus Bicer and 
+    Elifnur Sunger and 
+    Tales Imbiriba and 
+    Eugene Tunik and 
+    Deniz Erdogmus and 
+    Mathew Yarossi and 
+    Robin Walters
+  },
+  year={2023},
+  month={10},
+  day={30},
+  journal={arXiv preprint arXiv:2311.14675},
+  url={https://arxiv.org/abs/2311.14675},
 }
 ```
 
+Dataset Citation:
+```bibtex
+@dataset{smedemarkmargulies_2023_10359729,
+  title={{EMG from Combination Gestures following Visual Prompts}},
+  author={
+    Niklas, Smedemark-Margulies and
+    Yunus, Bicer and
+    Elifnur, Sunger and
+    Tales, Imbiriba and
+    Eugene, Tunik and
+    Deniz, Erdogmus and
+    Mathew, Yarossi and
+    Robin, Walters
+  },
+  year={2023},
+  month={12},
+  day={11},
+  publisher={Zenodo},
+  version={1.0.1},
+  doi={10.5281/zenodo.10359729},
+  url={https://doi.org/10.5281/zenodo.10359729}
+}
+```

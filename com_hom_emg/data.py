@@ -1,4 +1,3 @@
-import pickle
 import random
 from typing import Tuple
 
@@ -33,10 +32,14 @@ def get_canonical_coords():
 
 
 def get_per_subj_data():
-    path = PROJECT_PATH / "data" / "self-contained-data.combination-gestures.pkl"
-    with open(path, "rb") as f:
-        data = pickle.load(f)
-    return data
+    path = PROJECT_PATH / "data" / "combination-gesture-dataset" / "python"
+    per_subj_data = {}
+    for subj_idx in range(10):
+        per_subj_data[subj_idx] = {
+            "data": np.load(path / f"subj{subj_idx}/data.npy"),
+            "labels": np.load(path / f"subj{subj_idx}/labels.npy"),
+        }
+    return per_subj_data
 
 
 def onehot(y_integer: np.ndarray):
@@ -162,19 +165,15 @@ def get_datasets(
         data, labels, is_single, subj_ids = [], [], [], []
         for subj_id, subj in enumerate(_subjs):
             # Add doubles
-            x = per_subj_data[subj]["doubles"]["data"]
+            x = per_subj_data[subj]["data"]
+            y = per_subj_data[subj]["labels"]
             data.append(x)
-            labels.append(per_subj_data[subj]["doubles"]["2d_labels"])
-            is_single.append(np.zeros(len(x), dtype=bool))  # NOTE - careful to use bool dtype; used for masking later
+            labels.append(y)
+            # NOTE - careful to use bool dtype; used for masking later
+            # Single gestures have 4 in one component or the other
+            is_sing = np.logical_or(y[:, 0] == 4, y[:, 1] == 4)
+            is_single.append(is_sing)
             subj_ids.append((subj_id + subj_id_offset) * np.ones(len(x), dtype=int))
-
-            # Add singles
-            for key in ["calibration", "held_singles", "pulsed_singles"]:
-                x = per_subj_data[subj][key]["data"]
-                data.append(x)
-                labels.append(per_subj_data[subj][key]["2d_labels"])
-                is_single.append(np.ones(len(x), dtype=bool))
-                subj_ids.append((subj_id + subj_id_offset) * np.ones(len(x), dtype=int))
 
         data = np.concatenate(data)
         if use_preprocessed_data:
