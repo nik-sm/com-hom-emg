@@ -89,7 +89,7 @@ python scripts/emit_latex.py
 
 # Dataset details
 
-For information on the dataset contents, see the paper or the description at Zenodo: https://zenodo.org/records/10291625.
+For information on the dataset contents, see the paper or the description at Zenodo: https://zenodo.org/records/10359729.
 
 Data used in this project was recorded and preprocessed using the GEST project.
 
