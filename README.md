@@ -136,14 +136,14 @@ Dataset Citation:
 @dataset{smedemarkmargulies_2023_10359729,
   title={{EMG from Combination Gestures following Visual Prompts}},
   author={
-    Niklas, Smedemark-Margulies and
-    Yunus, Bicer and
-    Elifnur, Sunger and
-    Tales, Imbiriba and
-    Eugene, Tunik and
-    Deniz, Erdogmus and
-    Mathew, Yarossi and
-    Robin, Walters
+    Niklas Smedemark-Margulies and
+    Yunus Bicer and
+    Elifnur Sunger and
+    Tales Imbiriba and
+    Eugene Tunik and
+    Deniz Erdogmus and
+    Mathew Yarossi and
+    Robin Walters
   },
   year={2023},
   month={12},
