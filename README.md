@@ -44,6 +44,8 @@ Load checkpoints, train fresh classifiers, and evaluate on unseen test subjects 
 ```shell
 python scripts/collect_fresh_classifier_stats.py --results_dir results_regular --which_expt regular --n_aug 500 --clf_name rf
 python scripts/collect_fresh_classifier_stats.py --results_dir results_ablation --which_expt ablation --n_aug 500 --clf_name rf
+python scripts/collect_fresh_classifier_stats.py --results_dir results_ablation_vary_weights --which_expt ablation --n_aug 500 --clf_name rf
+
 ```
 
 Note that if some training runs failed or cannot be loaded, the scripts above will create a list of failed runs.
@@ -58,6 +60,7 @@ Load checkpoints, and compute feature similarities:
 # NOTE: 1/128 = 0.0078125, the expected L2 distance between two vectors from a unit Gaussian in 64 dimensions
 python scripts/compute_feature_similarity.py --results_dir results_regular --which_expt regular --gamma 0.0078125
 python scripts/compute_feature_similarity.py --results_dir results_ablation --which_expt ablation --gamma 0.0078125
+python scripts/compute_feature_similarity.py --results_dir results_ablation_vary_weights --which_expt ablation_vary_weights --gamma 0.0078125
 ```
 
 To collect results from using a fine-tuned classifier rather than a freshly trained one (not included in paper), use:
@@ -89,7 +92,7 @@ python scripts/emit_latex.py
 
 # Dataset details
 
-For information on the dataset contents, see the paper or the description at Zenodo: https://zenodo.org/records/10359729.
+For information on the dataset contents, see the paper or the description at Zenodo: https://zenodo.org/records/10291624.
 
 Data used in this project was recorded and preprocessed using the GEST project.
 
@@ -114,14 +117,14 @@ Article Citation:
 @article{smedemarkmargulies2023fast,
   title={{Fast and Expressive Gesture Recognition using a Combination-Homomorphic Electromyogram Encoder}}, 
   author={
-    Niklas Smedemark-Margulies and 
-    Yunus Bicer and 
-    Elifnur Sunger and 
-    Tales Imbiriba and 
-    Eugene Tunik and 
-    Deniz Erdogmus and 
-    Mathew Yarossi and 
-    Robin Walters
+    Smedemark-Margulies, Niklas and 
+    Bicer, Yunus and 
+    Sunger, Elifnur and 
+    Imbiriba, Tales and 
+    Tunik, Eugene and 
+    Erdogmus, Deniz and 
+    Yarossi, Mathew and 
+    Walters, Robin
   },
   year={2023},
   month={10},
@@ -136,14 +139,14 @@ Dataset Citation:
 @dataset{smedemarkmargulies_2023_10359729,
   title={{EMG from Combination Gestures following Visual Prompts}},
   author={
-    Niklas Smedemark-Margulies and
-    Yunus Bicer and
-    Elifnur Sunger and
-    Tales Imbiriba and
-    Eugene Tunik and
-    Deniz Erdogmus and
-    Mathew Yarossi and
-    Robin Walters
+    Smedemark-Margulies, Niklas and
+    Bicer, Yunus and
+    Sunger, Elifnur and
+    Imbiriba, Tales and
+    Tunik, Eugene and
+    Erdogmus, Deniz and
+    Yarossi, Mathew and
+    Walters, Robin
   },
   year={2023},
   month={12},

@@ -1,4 +1,5 @@
 """Train fresh classifiers using test checkpoints"""
+
 import argparse
 import re
 import sys
@@ -11,6 +12,7 @@ import pandas as pd
 import torch
 import yaml
 from ablation_settings import settings_names as ablation_settings_names
+from ablation_settings_vary_weights import settings_names as ablation_settings_vary_weights_names
 from loguru import logger
 from pytorch_lightning import seed_everything
 from regular_settings import settings_names as regular_settings_names
@@ -337,7 +339,7 @@ def main(results_dir: Path, figs_dir: Path, which_expt: str, clf_name: str, n_au
         key_names = ["encoder", "clf", "feat", "loss_type"]
         key_cols = ["encoder_arch", "clf_arch", "feature_combine_type", "loss_type"]
 
-    elif which_expt == "ablation":
+    elif which_expt in ["ablation", "ablation_vary_weights"]:
         key_names = ["encoder", "clf", "feat", "loss_type", "lin_loss", "real_CE", "fake_CE", "noise_SNR"]
         key_cols = [
             "encoder_arch",
@@ -349,7 +351,12 @@ def main(results_dir: Path, figs_dir: Path, which_expt: str, clf_name: str, n_au
             "fake_CE_loss_coeff",
             "data_noise_SNR",
         ]
-        settings_names = ablation_settings_names
+        if which_expt == "ablation":
+            settings_names = ablation_settings_names
+        elif which_expt == "ablation_vary_weights":
+            settings_names = ablation_settings_vary_weights_names
+        else:
+            raise ValueError()
 
     else:
         raise NotImplementedError()
@@ -372,7 +379,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--results_dir", default="results")
     parser.add_argument("--figs_dir", default="figures")
-    parser.add_argument("--which_expt", required=True, choices=["regular", "ablation"])
+    parser.add_argument("--which_expt", required=True, choices=["regular", "ablation", "ablation_vary_weights"])
     parser.add_argument("--clf_name", default="rf")
     parser.add_argument("--n_aug", default=None, type=int, help="None to use all aug items, positive int to use subset")
     args = parser.parse_args()

@@ -15,11 +15,12 @@ files = [
     "finetune.ablation.csv",
     "fresh-classifier.regular.rf.500.csv",
     "fresh-classifier.ablation.rf.500.csv",
+    "fresh-classifier.ablation_vary_weights.rf.500.csv",
 ]
 for file in files:
     df = pd.read_csv(figs_dir / file, index_col=False)
     df = df.iloc[:, 1:]  # Drop first col
-    df = df.drop("encoder", "columns")
+    df = df.drop("encoder", axis="columns")
 
     n_cols = df.shape[1]
     table = df.to_latex(index=False, escape=True, column_format="|l" * n_cols + "|")

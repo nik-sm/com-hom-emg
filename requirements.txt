@@ -15,6 +15,7 @@ torch==1.13.1
 torch-tb-profiler
 torchmetrics
 torchvision
+umap-learn
 vit-pytorch
 
 # project utilities
