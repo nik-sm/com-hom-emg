@@ -106,7 +106,7 @@ To produce the self-contained data file used here:
 
 # PDF
 
-To read our paper, see: https://arxiv.org/pdf/2311.14675.pdf
+To read our paper, see: https://openreview.net/pdf?id=j5T4pcLbcY
 
 # Citation
 
@@ -126,11 +126,11 @@ Article Citation:
     Yarossi, Mathew and 
     Walters, Robin
   },
-  year={2023},
-  month={10},
-  day={30},
-  journal={arXiv preprint arXiv:2311.14675},
-  url={https://arxiv.org/abs/2311.14675},
+  year={2024},
+  month={04},
+  day={01},
+  journal={TMLR},
+  url={https://openreview.net/pdf?id=j5T4pcLbcY},
 }
 ```
 
